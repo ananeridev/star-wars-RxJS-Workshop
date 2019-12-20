@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">Star Wars Typeahead Search</mat-toolbar>
+<mat-form-field class="full-width">
+  <input matInput type="text" [formControl]="myInput">
+</mat-form-field>
+<div *ngIf="results$ | async as results">
+  <mat-card *ngIf="results.message || !results.length; else listData">
+    {{results.message || 'Sem resultados para esse termo!'}}
+  </mat-card>
+  <ng-template #listData>
+    <mat-card *ngFor="let r of results">
+      {{r.name}}
+    </mat-card>
+  </ng-template>
+</div>
